@@ -1,0 +1,25 @@
+CREATE TABLE fobs_bde_phones(
+  customerNumber VARCHAR2(20),
+  age VARCHAR2(10),
+  income VARCHAR2(10),
+  gender VARCHAR2(10)
+)
+ORGANIZATION EXTERNAL
+(
+  TYPE ORACLE_LOADER
+  DEFAULT DIRECTORY monRepertoireFobsSrc18
+  ACCESS PARAMETERS 
+(
+RECORDS DELIMITED BY newline
+SKIP 0
+CHARACTERSET UTF8
+BADFILE monRepertoireFobsLog18:'fobs_bde_phones.txt.bad'
+LOGFILE monRepertoireFobsLog18:'fobs_bde_phones.txt.log'
+FIELDS TERMINATED BY ';'
+OPTIONALLY ENCLOSED BY '"'
+)
+LOCATION ('FobsPhones'))
+REJECT LIMIT 10;
+
+-- DESCRIBE fobs_bde_phones;
+-- SELECT TABLE_NAME, TYPE_NAME, DEFAULT_DIRECTORY_NAME FROM USER_EXTERNAL_TABLES;
