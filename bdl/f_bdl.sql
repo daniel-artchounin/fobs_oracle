@@ -1,3 +1,4 @@
+@fobs_bdl_presentation_log.sql
 @f_bdl_drop.sql
 @f_bdl_drop_log.sql
 @f_bdl_create_produit.sql

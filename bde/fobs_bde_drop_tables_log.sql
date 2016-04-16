@@ -1,6 +1,4 @@
 BEGIN
-  DBMS_OUTPUT.PUT_LINE('Suppression de la table fobs_bde_calls');
-  DBMS_OUTPUT.PUT_LINE('Suppression de la table fobs_bde_phones');
-  DBMS_OUTPUT.PUT_LINE('Suppression de la table fobs_bde_villes');
+	DBMS_OUTPUT.PUT_LINE('');
+  	DBMS_OUTPUT.PUT_LINE('********************************** Suppression de tables **********************************');
 END;
-/

@@ -9,7 +9,12 @@ Declare
   nbOfLinesBdeCalls NUMBER(10, 0);
   nbOfLinesBdtCalls NUMBER(10, 0);
 BEGIN
-  -- Supression du contenu des tables --
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('********************************** BDE -> BDT **********************************');
+  
+
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Suppression du contenu des tables ----------------------------------');
   DBMS_OUTPUT.PUT_LINE('Suppression des tuples de ro_fobs_bdt_appels...');
   DELETE FROM ro_fobs_bdt_appels;  
   DBMS_OUTPUT.PUT_LINE('Suppression des tuples de ro_fobs_bdt_date...');
@@ -20,7 +25,8 @@ BEGIN
   DELETE FROM ro_fobs_bdt_ville;
 
 
-   -- Désactivation des contraintes --
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Désactivation des contraintes ----------------------------------');
   DBMS_OUTPUT.PUT_LINE('Désactivation des contraintes de ro_fobs_bdt_appels...');
   manage_constraints('DISABLE', 'ro_fobs_bdt_appels');
   DBMS_OUTPUT.PUT_LINE('Désactivation des contraintes de ro_fobs_bdt_date...');
@@ -30,8 +36,9 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Désactivation des contraintes de ro_fobs_bdt_ville...');
   manage_constraints('DISABLE', 'ro_fobs_bdt_ville');
 
-  -- Insertion dans ro_fobs_bdt_date  --
-  DBMS_OUTPUT.PUT_LINE('Insertion dans ro_fobs_bdt_date...');
+
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_date... ---------------------------------- ');
   INSERT INTO ro_fobs_bdt_date
   SELECT DISTINCT callDate
   FROM fobs_bde_calls;
@@ -51,7 +58,8 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Nombre de tuples dates différentes de fobs_bde_calls : ' || nbOfLinesBdeDate);
 
 
-  DBMS_OUTPUT.PUT_LINE('Insertion dans ro_fobs_bdt_appelant...');
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_appelant... ---------------------------------- ');
   INSERT INTO ro_fobs_bdt_appelant
   SELECT customerNumber, age, income, gender
   FROM fobs_bde_phones;
@@ -68,7 +76,8 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_phones: ' || nbOfLinesBdeAppelant);
 
 
-  DBMS_OUTPUT.PUT_LINE('Insertion dans ro_fobs_bdt_ville...');
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_ville... ---------------------------------- ');
   INSERT INTO ro_fobs_bdt_ville
   SELECT ville_code_commune, ville_nom_simple
   FROM fobs_bde_villes;
@@ -85,6 +94,8 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_villes: ' || nbOfLinesBdeVilles);
 
 
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_appels... ---------------------------------- ');
   INSERT INTO ro_fobs_bdt_appels
   SELECT city, callDate, receiverNumber, customerNumber, duration
   FROM fobs_bde_calls;
@@ -101,6 +112,8 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_calls : ' || nbOfLinesBdeCalls);
 
 
+  DBMS_OUTPUT.PUT_LINE('');
+  DBMS_OUTPUT.PUT_LINE('---------------------------------- Ré-activation des contraintes ----------------------------------');
   DBMS_OUTPUT.PUT_LINE('Nombre de tuples de ro_fobs_bdt_date : ' || nbOfLinesBdtDate);
   DBMS_OUTPUT.PUT_LINE('Activation des contraintes de ro_fobs_bdt_date...');
   manage_constraints('ENABLE', 'ro_fobs_bdt_date');
