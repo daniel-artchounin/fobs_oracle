@@ -3,7 +3,6 @@ CREATE OR REPLACE TYPE fobs_bdt_ville AS OBJECT (
     villeNomSimple VARCHAR2(45),
     MEMBER FUNCTION getCommune RETURN VARCHAR2,
     MEMBER FUNCTION getNomVille RETURN VARCHAR2
-
 );-- [NOT FINAL];
 /
 
@@ -13,7 +12,7 @@ IS
   IS
   BEGIN
     IF LENGTH(codeCommune) <= 5 THEN 
-      RETURN (codeCommune);
+      RETURN codeCommune;
     ELSE  
      RETURN NULL;
     END IF;    
