@@ -1,25 +1,24 @@
 CREATE TABLE fobs_bde_calls(
-  city VARCHAR2(10),
-  callDate VARCHAR2(20),
-  receiverNumber VARCHAR2(10),
-  customerNumber VARCHAR2(10),
-  duration VARCHAR2(20)
+	city VARCHAR2(10),
+	callDate VARCHAR2(20),
+	receiverNumber VARCHAR2(10),
+	customerNumber VARCHAR2(10),
+	duration VARCHAR2(20)
 )
-ORGANIZATION EXTERNAL
-(
-  TYPE ORACLE_LOADER
-  DEFAULT DIRECTORY monRepertoireFobsSrc18
-  ACCESS PARAMETERS 
-(
-RECORDS DELIMITED BY newline
-SKIP 0
-CHARACTERSET UTF8
-BADFILE monRepertoireFobsLog18:'fobs_bde_calls.txt.bad'
-LOGFILE monRepertoireFobsLog18:'fobs_bde_calls.txt.log'
-FIELDS TERMINATED BY ';'
-OPTIONALLY ENCLOSED BY '"'
+ORGANIZATION EXTERNAL(
+	TYPE ORACLE_LOADER
+	DEFAULT DIRECTORY monRepertoireFobsSrc18
+	ACCESS PARAMETERS(
+		RECORDS DELIMITED BY newline
+		SKIP 0
+		CHARACTERSET UTF8
+		BADFILE monRepertoireFobsLog18:'fobs_bde_calls.txt.bad'
+		LOGFILE monRepertoireFobsLog18:'fobs_bde_calls.txt.log'
+		FIELDS TERMINATED BY ';'
+		OPTIONALLY ENCLOSED BY '"'
+	)
+	LOCATION ('FobsCalls')
 )
-LOCATION ('FobsCalls'))
 REJECT LIMIT 1000;
 
 -- DESCRIBE f_bde_dataCSV;
