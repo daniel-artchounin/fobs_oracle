@@ -12,7 +12,6 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('');
 	DBMS_OUTPUT.PUT_LINE('********************************** BDE -> BDT **********************************');
 
-
 	DBMS_OUTPUT.PUT_LINE('');
 	DBMS_OUTPUT.PUT_LINE('---------------------------------- Suppression du contenu des tables ----------------------------------');
 	DBMS_OUTPUT.PUT_LINE('Suppression des tuples de ro_fobs_bdt_appels...');
@@ -23,7 +22,6 @@ BEGIN
 	DELETE FROM ro_fobs_bdt_appelant;
 	DBMS_OUTPUT.PUT_LINE('Suppression des tuples de ro_fobs_bdt_ville...');
 	DELETE FROM ro_fobs_bdt_ville;
-
 	COMMIT;
 
 
@@ -41,6 +39,7 @@ BEGIN
 
 	DBMS_OUTPUT.PUT_LINE('');
 	DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_date... ---------------------------------- ');
+
 	INSERT INTO ro_fobs_bdt_date
 	SELECT DISTINCT callDate
 	FROM fobs_bde_calls;
@@ -58,7 +57,6 @@ BEGIN
 	);
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples dates différentes de fobs_bde_calls : ' || nbOfLinesBdeDate);
-
 	COMMIT;
 
 
@@ -78,7 +76,6 @@ BEGIN
 	FROM fobs_bde_phones;
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_phones: ' || nbOfLinesBdeAppelant);
-
 	COMMIT;
 
 
@@ -98,7 +95,6 @@ BEGIN
 	FROM fobs_bde_villes;
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_villes: ' || nbOfLinesBdeVilles);
-
 	COMMIT;
 
 
@@ -118,7 +114,6 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de ro_fobs_bdt_appels : ' || nbOfLinesBdtCalls);
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_bde_calls : ' || nbOfLinesBdeCalls);
-
 	COMMIT;
 
 
@@ -153,8 +148,12 @@ BEGIN
 	SELECT COUNT(*) INTO nbOfLinesBdtCalls
 	FROM ro_fobs_bdt_appels;
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de ro_fobs_bdt_appels : ' || nbOfLinesBdtCalls);
-
 	COMMIT;
 END;
 /
 -- spool off;
+
+ANALYZE TABLE ro_fobs_bdt_appels COMPUTE STATISTICS;
+ANALYZE TABLE ro_fobs_bdt_date COMPUTE STATISTICS;
+ANALYZE TABLE ro_fobs_bdt_appelant COMPUTE STATISTICS;
+ANALYZE TABLE ro_fobs_bdt_ville COMPUTE STATISTICS;

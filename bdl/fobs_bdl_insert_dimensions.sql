@@ -18,7 +18,6 @@ BEGIN
 	INSERT INTO fobs_dw_ville(codeCommune, villeNomSimple)
 	SELECT V.getCommune(), V.getNomVille()
 	FROM ro_fobs_bdt_ville V;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlVille
@@ -28,7 +27,6 @@ BEGIN
 
 	DELETE FROM fobs_dw_ville
 	WHERE codeCommune IS NULL;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlVille
@@ -59,17 +57,15 @@ BEGIN
 	INSERT INTO fobs_dw_date(dateCall, jDS, jDA, mois, trimestre, semaine)
 	SELECT D.getDate(), D.getJDS(), D.getJDA(), D.getMois(), D.getTrimestre(), D.getSemaine()
 	FROM ro_fobs_bdt_date D;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlDate
 	FROM fobs_dw_date;
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_dw_date après insertion : ' || nbOfLinesBdlDate);
-
+	
 	DELETE FROM fobs_dw_date
 	WHERE dateCall IS NULL;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlDate
@@ -103,17 +99,15 @@ BEGIN
 	INSERT INTO fobs_dw_appelant(customerNumber, age, income, gender)
 	SELECT A.getCustomerNumber(), A.getAge(), A.getIncome(), A.getGender()
 	FROM ro_fobs_bdt_appelant A;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlAppelant
 	FROM fobs_dw_appelant;
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_dw_appelant après insertion : ' || nbOfLinesBdlAppelant);
-
+	
 	DELETE FROM fobs_dw_appelant
 	WHERE customerNumber IS NULL;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlAppelant
@@ -138,3 +132,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_dw_appelant : ' || nbOfLinesBdlAppelant);
 END;
 /
+
+ANALYZE TABLE fobs_dw_ville COMPUTE STATISTICS;
+ANALYZE TABLE fobs_dw_date COMPUTE STATISTICS;
+ANALYZE TABLE fobs_dw_appelant COMPUTE STATISTICS;

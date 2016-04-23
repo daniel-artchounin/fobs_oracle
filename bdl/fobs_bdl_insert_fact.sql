@@ -13,7 +13,6 @@ BEGIN
 	SELECT A.getCity(), A.getCallDate(), A.getReceiverNumber(), A.getCustomerNumber(), A.getDuration()
 	FROM ro_fobs_bdt_appels A;
 	-- WHERE ROWNUM < 5000;
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlCalls
@@ -23,9 +22,8 @@ BEGIN
 
 	DELETE FROM fobs_dw_calls
 	WHERE (fkCity IS NOT NULL AND fkCity NOT IN (
-	SELECT codeCommune FROM fobs_dw_ville
+		SELECT codeCommune FROM fobs_dw_ville
 	));
-
 	COMMIT;
 
 	SELECT COUNT(*) INTO nbOfLinesBdlCalls
@@ -47,3 +45,5 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_dw_calls : ' || nbOfLinesBdlCalls);
 END;
 /
+
+ANALYZE TABLE fobs_dw_calls COMPUTE STATISTICS;
