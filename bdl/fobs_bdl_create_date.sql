@@ -1,5 +1,5 @@
 CREATE TABLE fobs_dw_date(
-	dateCall date,
+	dateCall DATE,
 	jDS NUMBER(1),
 	jDA NUMBER(3),
 	mois NUMBER(2),

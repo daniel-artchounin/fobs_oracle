@@ -1,8 +1,8 @@
 CREATE TABLE fobs_dw_calls(
 	fkCity VARCHAR2(5),
-	fkCallDate date,
-	receiverNumber NUMBER(10),
+	fkCallDate DATE,
 	fkCustomerNumber NUMBER(10),
+	receiverNumber NUMBER(10),
 	duration NUMBER(6)
 );
 
