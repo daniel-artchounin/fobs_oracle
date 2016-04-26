@@ -10,6 +10,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE('********************************** Import des données des dimensions **********************************');
 
 
+
 	DBMS_OUTPUT.PUT_LINE('Désactivation des contraintes de fobs_dw_ville...');
 	manage_constraints('DISABLE', 'fobs_dw_ville'); 
 
@@ -47,6 +48,7 @@ BEGIN
 	FROM fobs_dw_ville;
 
 	DBMS_OUTPUT.PUT_LINE('Nombre de tuples de fobs_dw_ville : ' || nbOfLinesBdlVille);
+
 
 
 	DBMS_OUTPUT.PUT_LINE('Désactivation des contraintes de fobs_dw_date...');

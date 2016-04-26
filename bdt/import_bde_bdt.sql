@@ -1,5 +1,4 @@
--- SET SERVEROUTPUT ON
-Declare
+DECLARE
 	nbOfLinesBdeDate NUMBER(10, 0);
 	nbOfLinesBdtDate  NUMBER(10, 0);
 	nbOfLinesBdeAppelant NUMBER(10, 0);
@@ -39,7 +38,6 @@ BEGIN
 
 	DBMS_OUTPUT.PUT_LINE('');
 	DBMS_OUTPUT.PUT_LINE('---------------------------------- Insertion dans ro_fobs_bdt_date... ---------------------------------- ');
-
 	INSERT INTO ro_fobs_bdt_date
 	SELECT DISTINCT callDate
 	FROM fobs_bde_calls;
@@ -151,7 +149,6 @@ BEGIN
 	COMMIT;
 END;
 /
--- spool off;
 
 ANALYZE TABLE ro_fobs_bdt_appels COMPUTE STATISTICS;
 ANALYZE TABLE ro_fobs_bdt_date COMPUTE STATISTICS;
