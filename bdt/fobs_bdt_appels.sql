@@ -17,8 +17,8 @@ IS
 	MEMBER FUNCTION getCity RETURN VARCHAR2
 	IS
 	BEGIN
-		IF LENGTH(city) <= 5 THEN 
-			RETURN (city);
+		IF LENGTH(SELF.city) <= 5 THEN 
+			RETURN (SELF.city);
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -28,19 +28,19 @@ IS
 	IS
 		regexResult NUMBER(1);
 	BEGIN
-		SELECT REGEXP_INSTR(callDate, '\d{4}-\d{2}-\d{2}') INTO regexResult FROM DUAL;
+		regexResult := REGEXP_INSTR(SELF.callDate, '\d{4}-\d{2}-\d{2}');
 		IF regexResult = 0 THEN 
 			RETURN NULL;
 		ELSE
-			RETURN TO_DATE(callDate, 'YYYY-MM-DD');
+			RETURN TO_DATE(SELF.callDate, 'YYYY-MM-DD');
 		END IF;
 	END;
 
 	MEMBER FUNCTION getReceiverNumber RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(receiverNumber) = 10 THEN 
-			RETURN TO_NUMBER(receiverNumber);
+		IF LENGTH(SELF.receiverNumber) = 10 THEN 
+			RETURN TO_NUMBER(SELF.receiverNumber);
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -49,8 +49,8 @@ IS
 	MEMBER FUNCTION getCustomerNumber RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(customerNumber) = 10 THEN 
-			RETURN TO_NUMBER(customerNumber);
+		IF LENGTH(SELF.customerNumber) = 10 THEN 
+			RETURN TO_NUMBER(SELF.customerNumber);
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -59,8 +59,8 @@ IS
 	MEMBER FUNCTION getDuration RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(duration) <= 6 THEN 
-			RETURN TO_NUMBER(duration);
+		IF LENGTH(SELF.duration) <= 6 THEN 
+			RETURN TO_NUMBER(SELF.duration);
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -68,7 +68,7 @@ IS
 END;
 /
 
---DROP TABLE ro_fobs_bdt_appels;
+-- DROP TABLE ro_fobs_bdt_appels;
 CREATE TABLE ro_fobs_bdt_appels OF fobs_bdt_appels(
   receiverNumber NOT NULL
 );

@@ -11,8 +11,8 @@ IS
 	MEMBER FUNCTION getCommune RETURN VARCHAR2
 	IS
 	BEGIN
-		IF LENGTH(codeCommune) <= 5 THEN 
-			RETURN codeCommune;
+		IF LENGTH(SELF.codeCommune) <= 5 THEN 
+			RETURN SELF.codeCommune;
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -20,7 +20,7 @@ IS
 	MEMBER FUNCTION getNomVille RETURN VARCHAR2
 	IS
 	BEGIN
-		RETURN villeNomSimple;
+		RETURN SELF.villeNomSimple;
 	END;  
 END;
 /

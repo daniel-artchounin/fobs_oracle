@@ -1,4 +1,5 @@
 spool log.txt
+	@utlexcpt.sql
 	@utlxplan.sql
 	@manage_constraints.sql
 	@./bde/fobs_bde.sql

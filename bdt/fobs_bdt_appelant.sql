@@ -15,8 +15,8 @@ IS
 	MEMBER FUNCTION getCustomerNumber RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(customerNumber) = 10 THEN 
-			RETURN TO_NUMBER(customerNumber);
+		IF LENGTH(SELF.customerNumber) = 10 THEN 
+			RETURN TO_NUMBER(SELF.customerNumber);
 		ELSE  
 			RETURN NULL;
 		END IF;    
@@ -25,8 +25,8 @@ IS
 	MEMBER FUNCTION getAge RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(age) <= 3 THEN 
-			RETURN TO_NUMBER(age);
+		IF LENGTH(SELF.age) <= 3 THEN 
+			RETURN TO_NUMBER(SELF.age);
 		ELSE
 			RETURN NULL;
 		END IF;      
@@ -35,8 +35,8 @@ IS
 	MEMBER FUNCTION getIncome RETURN NUMBER
 	IS
 	BEGIN
-		IF LENGTH(income) <= 5 THEN 
-			RETURN TO_NUMBER(income);
+		IF LENGTH(SELF.income) <= 5 THEN 
+			RETURN TO_NUMBER(SELF.income);
 		ELSE
 			RETURN NULL;
 		END IF;      
@@ -45,8 +45,8 @@ IS
 	MEMBER FUNCTION getGender RETURN VARCHAR2
 	IS
 	BEGIN
-		IF gender = 'M' or gender = 'F'  or gender = 'U' THEN 
-			RETURN gender;
+		IF SELF.gender = 'M' or SELF.gender = 'F'  or SELF.gender = 'U' THEN 
+			RETURN SELF.gender;
 		ELSE
 			RETURN NULL;
 		END IF; 
